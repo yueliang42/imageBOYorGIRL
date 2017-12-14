@@ -232,7 +232,7 @@ class Model:
 
         # 给出输入属于各个类别的概率，我们是二值类别，则该函数会给出输入图像属于0和1的概率各为多少
         result = self.model.predict_proba(image)
-        print('result:', result)
+        print('resulte from lyue :', result)
 
         # 给出类别预测：0或者1
         result = self.model.predict_classes(image)
@@ -244,7 +244,7 @@ if __name__ == '__main__':
 
     dataset = Dataset('./data/')
     dataset.load()
-    '''
+
     #训练模型，这段代码不用，注释掉 
     model = Model()
     model.build_model(dataset)
@@ -252,7 +252,7 @@ if __name__ == '__main__':
     model.train(dataset)
 
     model.save_model( )
-    '''
+
     # 评估模型
     model = Model()
     model.load_model(MODEL_PATH)
