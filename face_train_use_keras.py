@@ -191,32 +191,9 @@ class Model:
         score = self.model.evaluate(dataset.test_images, dataset.test_labels, verbose=1)
         print("%s: %.2f%%" % (self.model.metrics_names[1], score[1] * 100))
 
-        # 识别人脸
-        def face_predict(self, image):
-            # 依然是根据后端系统确定维度顺序
-            if K.image_dim_ordering() == 'th' and image.shape != (1, 3, IMAGE_SIZE, IMAGE_SIZE):
-                image = resize_image(image)  # 尺寸必须与训练集一致都应该是IMAGE_SIZE x IMAGE_SIZE
-                image = image.reshape((1, 3, IMAGE_SIZE, IMAGE_SIZE))  # 与模型训练不同，这次只是针对1张图片进行预测
-            elif K.image_dim_ordering() == 'tf' and image.shape != (1, IMAGE_SIZE, IMAGE_SIZE, 3):
-                image = resize_image(image)
-                image = image.reshape((1, IMAGE_SIZE, IMAGE_SIZE, 3))
 
-                # 浮点并归一化
-            image = image.astype('float32')
-            image /= 255
 
-            # 给出输入属于各个类别的概率，我们是二值类别，则该函数会给出输入图像属于0和1的概率各为多少
-            result = self.model.predict_proba(image)
-            print('result:', result)
-
-            # 给出类别预测：0或者1
-            result = self.model.predict_classes(image)
-
-            # 返回类别预测结果
-            return result[0]
-
-            # 识别人脸
-
+# 识别人脸
     def face_predict(self, image):
         # 依然是根据后端系统确定维度顺序
         if K.image_dim_ordering() == 'th' and image.shape != (1, 3, IMAGE_SIZE, IMAGE_SIZE):
@@ -232,7 +209,7 @@ class Model:
 
         # 给出输入属于各个类别的概率，我们是二值类别，则该函数会给出输入图像属于0和1的概率各为多少
         result = self.model.predict_proba(image)
-        print('resulte from lyue :', result)
+        print('result:', result)
 
         # 给出类别预测：0或者1
         result = self.model.predict_classes(image)

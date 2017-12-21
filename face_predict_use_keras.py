@@ -9,7 +9,7 @@ MODEL_PATH = './me.face.model.h5'
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
-        print("Usage:%s camera_id\r\n" % (sys.argv[0]))
+        print("Usage:%s picture path Name\r\n" % (sys.argv[0]))
         sys.exit(0)
 
     # 加载模型
